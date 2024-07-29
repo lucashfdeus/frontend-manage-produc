@@ -1,0 +1,38 @@
+<div class="container main-container">
+  <h1>Detalhes do Produto</h1>
+
+  <div *ngIf="product">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th>Nome do Produto</th>
+          <td>{{ product.description }}</td>
+        </tr>
+        <tr>
+          <th>Departamento</th>
+          <td>{{ getDepartmentName(product.departmentCode) }}</td>
+        </tr>
+        <tr>
+          <th>Preço</th>
+          <td>{{ product.price | currencyFormat }}</td>
+        </tr>
+        <tr>
+          <th>Ativo</th>
+          <td>{{ product.status ? 'Sim' : 'Não' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-right">
+      <a class="btn btn-primary" [routerLink]="['/product/list-all']">Voltar para a Lista</a>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage">
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="!product && !errorMessage">
+    <p>Carregando detalhes do produto...</p>
+  </div>
+</div>

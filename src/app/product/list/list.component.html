@@ -1,0 +1,50 @@
+<div class="container main-container">
+  <h1>Lista de Produtos</h1>
+  <p>
+    <a class="btn btn-info" [routerLink]="['/product/add-new']">Novo Produto</a>
+  </p>
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nome</th>
+        <th>Departamento</th>
+        <th>Preço</th>
+        <th>Ativo</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.description }}</td>
+        <td>{{ getDepartmentName(product.departmentCode) }}</td>
+        <td>{{ product.price | currencyFormat }}</td>
+        <td>
+          <input [checked]="product.status" class="check-box" disabled="disabled" type="checkbox">
+        </td>
+        <td class="text-right">
+          <a class="btn btn-info" [routerLink]="['/product/details', product.id]">
+            <span class="fa fa-search"></span>
+          </a>&nbsp;
+          <a class="btn btn-warning" [routerLink]="['/product/edit', product.id]">
+            <span class="fa fa-pencil-alt"></span>
+          </a>&nbsp;
+          <a *ngIf="product.status" class="btn btn-danger" [routerLink]="['/product/delete', product.id]">
+            <span class="fa fa-trash"></span>
+          </a>
+          <a *ngIf="!product.status" class="btn btn-danger disabled" aria-disabled="true">
+            <span class="fa fa-trash"></span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="errorMessage">
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="products.length === 0 && !errorMessage">
+    <p>Carregando produtos...</p>
+  </div>
+</div>

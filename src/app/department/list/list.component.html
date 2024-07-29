@@ -1,0 +1,26 @@
+<div class="container main-container">
+  <h1>Lista de Departamentos</h1>
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Código</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let department of departments">
+        <td>{{ department.code }}</td>
+        <td>{{ department.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="errorMessage" class="text-danger">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="departments.length === 0 && !errorMessage">
+    <p>Carregando departamentos...</p>
+  </div>
+</div>
