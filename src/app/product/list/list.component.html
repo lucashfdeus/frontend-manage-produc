@@ -40,11 +40,11 @@
     </tbody>
   </table>
 
-  <div *ngIf="errorMessage">
-    <p class="text-danger">{{ errorMessage }}</p>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
   </div>
 
-  <div *ngIf="products.length === 0 && !errorMessage">
-    <p>Carregando produtos...</p>
+  <div *ngIf="products.length === 0 && !errorMessage" class="alert alert-info">
+    <i class="fa fa-info-circle" aria-hidden="true"></i> Nenhum registro encontrado.
   </div>
 </div>
