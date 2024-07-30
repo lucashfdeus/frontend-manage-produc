@@ -30,3 +30,5 @@ Para executar o projeto localmente na sua máquina, siga estas etapas:
 2. **Certifique-se de ter o Node.js e o Angular CLI instalados.** Você pode baixar o Node.js em [nodejs.org](https://nodejs.org/) e instalar o Angular CLI globalmente com o seguinte comando:
    ```bash
    npm install -g @angular/cli
+
+3. Após intalação `Ng serve`
