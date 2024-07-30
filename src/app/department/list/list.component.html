@@ -20,7 +20,8 @@
     <p>{{ errorMessage }}</p>
   </div>
 
-  <div *ngIf="departments.length === 0 && !errorMessage">
-    <p>Carregando departamentos...</p>
+  <div *ngIf="departments.length === 0 && !errorMessage" class="alert alert-info d-flex align-items-center">
+    <i class="fa fa-spinner fa-spin fa-2x me-3" aria-hidden="true"></i>
+    <p class="mb-0">Carregando departamentos...</p>
   </div>
 </div>
