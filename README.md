@@ -23,6 +23,10 @@ Este projeto é a parte Frontend do sistema **ManageProduct** e foi gerado com o
 
 Para executar o projeto localmente na sua máquina, siga estas etapas:
 
-1. **Certifique-se de ter o Node.js e o Angular CLI instalados.** Você pode baixar o Node.js em [nodejs.org](https://nodejs.org/) e instalar o Angular CLI globalmente com o seguinte comando:
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/lucashfdeus/frontend-manage-produc.git
+
+2. **Certifique-se de ter o Node.js e o Angular CLI instalados.** Você pode baixar o Node.js em [nodejs.org](https://nodejs.org/) e instalar o Angular CLI globalmente com o seguinte comando:
    ```bash
    npm install -g @angular/cli
