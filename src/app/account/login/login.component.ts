@@ -2,7 +2,8 @@ import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren }
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Observable, fromEvent, merge } from 'rxjs';
+import { Observable, fromEvent, merge, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { DisplayMessage, GenericValidator, ValidationMessages } from 'src/app/utils/generic-form-validation';
 import { ToastrService } from 'ngx-toastr';
 
@@ -69,6 +70,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
     if (this.loginForm.dirty && this.loginForm.valid) {
       this.user = { ...this.user, ...this.loginForm.value };
       this.accountService.login(this.user)
+        .pipe(
+          catchError(error => {
+            // Exibe um toast de erro para a falha de conexão ou erro de servidor
+            this.toastr.error('Não foi possível conectar ao servidor. Tente novamente mais tarde.', 'Erro de Conexão');
+            // Retorna um observable com erro para o fluxo continuar
+            return throwError(() => error);
+          })
+        )
         .subscribe(
           success => { this.processSuccess(success) },
           fail => { this.processFail(fail) }

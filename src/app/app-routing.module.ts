@@ -11,8 +11,16 @@ const routes: Routes = [
     loadChildren: () => import('./account/account.module')
       .then(m => m.AccountModule)
   },
-
-
+  {
+    path: 'product',
+    loadChildren: () => import('./product/product.module')
+      .then(m => m.ProductModule)
+  },
+  {
+    path: 'department',
+    loadChildren: () => import('./department/department.module')
+      .then(m => m.DepartmentModule)
+  },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', component: NotFoundComponent }
 ];

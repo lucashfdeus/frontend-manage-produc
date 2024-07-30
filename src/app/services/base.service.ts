@@ -19,16 +19,24 @@ export abstract class BaseService {
     return {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        //'Authorization': `Bearer ${this.LocalStorage.obterTokenUsuario()}`
       })
     };
   }
 
-  protected extractData(response: any) {
-    return response.data || {};
+  protected GetAuthHeaderJson() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.LocalStorage.getUserToken()}`
+      })
+    };
   }
 
-  protected serviceError(response: HttpErrorResponse): any {
+  protected extractData<T>(response: any): T {
+    return response.data as T;
+  }
+
+  protected serviceError(response: HttpErrorResponse) {
     const customError: string[] = [];
     const customResponse: CustomErrorResponse = { error: { errors: [] } };
 
@@ -45,6 +53,6 @@ export abstract class BaseService {
     customResponse.error.errors = customError;
 
     console.error(response);
-    return throwError(response);
+    return throwError(customResponse);
   }
 }
